@@ -1,0 +1,12 @@
+<div class="basic-container" >
+  <h2>Details</h2>
+
+  <mat-list role="list" >
+    <mat-list-item>Title: {{ newsItem.title ? newsItem.title : 'No title'}}</mat-list-item>
+    <mat-list-item>Type: {{newsItem.type ? newsItem.type : 'No type'}}</mat-list-item>
+    <mat-list-item>By: {{newsItem.by ? newsItem.by : 'No author'}}</mat-list-item>
+    <mat-list-item>Score: {{newsItem.score ? newsItem.score : 'No score'}}</mat-list-item>
+    <a mat-list-item href={{newsItem.url}}> {{newsItem.url ? newsItem.url : 'No url'}}</a>
+
+  </mat-list>
+</div>

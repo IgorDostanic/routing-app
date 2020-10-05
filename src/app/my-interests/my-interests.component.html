@@ -1,0 +1,11 @@
+<h2>My Interests</h2>
+
+<h3>!Newest hacking news!</h3>
+
+<div>
+  <div *ngFor="let item of items">
+    <a routerLink="/my-interests/{{item.id}}">
+      <span>{{item.title}}</span>
+    </a>
+  </div>
+</div>
