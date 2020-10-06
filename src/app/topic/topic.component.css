@@ -1,7 +1,45 @@
-.basic-container {
-  padding: 30px;
-}
+/* @import "compass/css3"; */
 
+.basic-container {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.horizontal-center {
+  display:flex;
+  justify-content: center;
+}
 mat-list-item, a {
   color: black !important;
+}
+
+mat-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+mat-list-item:last-child {
+  border: none;
+}
+
+mat-list-item {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+  text-decoration: none;
+  color: #000;
+
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+mat-list-item:hover {
+  font-size: 20px;
+  background: #f6f6f6;
 }
