@@ -4,8 +4,10 @@
 
 <div>
   <div *ngFor="let item of items">
-    <a routerLink="/my-interests/{{item.id}}">
+    <a (click)="clicked()" routerLink="/my-interests/{{item.id}}">
       <span>{{item.title}}</span>
     </a>
   </div>
+
+  <h4>Number of clicks: {{this.numOfClicks}}</h4>
 </div>
