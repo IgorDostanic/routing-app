@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription, Subject } from 'rxjs';
 import { ClickCountService } from '../click-count.service';
+import { takeUntil } from 'rxjs/operators';
 
 import { HackerNewsService } from '../hacker-news.service';
 import { Item } from '../item';
@@ -12,6 +14,8 @@ import { Item } from '../item';
 export class MyInterestsComponent implements OnInit {
   items: Item[] = [];
   numOfClicks: number;
+  subscription: Subscription;
+  private readonly unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
     private service: HackerNewsService,
@@ -19,7 +23,9 @@ export class MyInterestsComponent implements OnInit {
   ) {}
 
   getNewestStories(): void {
-    this.service.getNewestStoriesIds().subscribe(id => this.GetItemInfo(id));
+    this.subscription = this.service.getNewestStoriesIds()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(id => this.GetItemInfo(id));
   }
 
   GetItemInfo(ids: String[]): void {
@@ -35,6 +41,11 @@ export class MyInterestsComponent implements OnInit {
   ngOnInit() {
     this.getNewestStories();
     this.incrementService.numberOfClicks$.subscribe(numberOfClicks => this.numOfClicks = numberOfClicks)
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.unsubscribe();
   }
 
 }
